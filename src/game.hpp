@@ -18,7 +18,7 @@
     #define D(x)
 #endif
 
-struct GLFWwindow
+typedef struct GLFWwindow
 {
     class Game* game;
 };

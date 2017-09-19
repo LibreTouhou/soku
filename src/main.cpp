@@ -1,8 +1,8 @@
-#include "game.hpp"
+#include "soku.hpp"
 
 int main(int argc, char *argv[])
 {
-    Game test;
+    Soku test;
     test.initialize(argc, argv);
     test.loop();
     test.deinitialize();
