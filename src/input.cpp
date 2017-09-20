@@ -19,11 +19,20 @@ void Input::key_callback(GLFWwindow * window, int key, int scancode, int action,
 		key_down_buffer[key] = key_pressed_buffer[key] = false;
 }
 
+void Input::reset_combo_buffer()
+{
+	combo_index = 0;
+	last_update = 0;
+	for (size_t i = 0; i < 10; i++)
+		combo_buffer[i] = GLFW_KEY_UNKNOWN;
+}
+
 void Input::initialize(GLFWwindow * window)
 {
 	window = window;
 	glfwSetKeyCallback(window, key_callback);
 	
+	reset_combo_buffer();
 	for (size_t i = 0; i < GLFW_KEY_LAST; i++)
 	{
 		key_down_buffer[i] = false;
@@ -34,10 +43,7 @@ void Input::initialize(GLFWwindow * window)
 void Input::update(float dt)
 {
 	if (last_update > 0.5f)
-	{
-		combo_index = 0;
-		last_update = 0;
-	}
+		reset_combo_buffer();
 
 	if (key_pressed_buffer[GLFW_KEY_W])
 	{
@@ -101,6 +107,8 @@ bool Input::is_236B()
 	if (combo_buffer[2] != GLFW_KEY_K)
 		return false;
 
+	reset_combo_buffer();
+
 	return true;
 }
 
@@ -117,6 +125,8 @@ bool Input::is_623B()
 
 	if (combo_buffer[3] != GLFW_KEY_K)
 		return false;
+
+	reset_combo_buffer();
 
 	return true;
 }

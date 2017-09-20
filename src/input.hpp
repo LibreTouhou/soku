@@ -19,6 +19,8 @@ private:
 	static float last_update;
 
 	static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
+
+	static void reset_combo_buffer();
 public:
 	static void initialize(GLFWwindow* window);
 	static void update(float dt);
